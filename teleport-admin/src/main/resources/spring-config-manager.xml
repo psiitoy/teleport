@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+    <!-- 数据迁移 -->
+
+    <bean id="persistentManager" class="org.sprintdragon.teleport.core.migrate.PersistentManager">
+        <property name="entityDaoMap" ref="entityDaoMap">
+        </property>
+        <property name="checkMigrateMap" ref="checkMigrateMap">
+        </property>
+    </bean>
+    <util:map id="entityDaoMap">
+        <entry key="orderTraceInfoMongoDao" value-ref="orderTraceInfoMongoDao"/>
+        <entry key="orderTraceInfoMysqlDao" value-ref="orderTraceInfoMysqlDao"/>
+    </util:map>
+    <util:map id="checkMigrateMap">
+        <entry key="orderTraceInfoMongoDao#{T(org.sprintdragon.teleport.core.constants.TeleportConstants).SYMBOL_FROM_TO}orderTraceInfoMysqlDao"
+               value-ref="orderTraceInfoMongoToMysqlCheckMigrate"/>
+    </util:map>
+
+    <bean id="orderTraceInfoMongoToMysqlCheckMigrate"
+          class="org.sprintdragon.teleport.admin.entity.check.OrderTraceInfoMongoToMysqlCheckMigrate"/>
+
+</beans>

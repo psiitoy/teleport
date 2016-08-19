@@ -1,0 +1,109 @@
+#set($title = "订单备注数据迁移工具")
+#set($layout = "layout/default.vm")
+<div style="padding-top: 10px;">
+    #if($!success == 'true')
+        <div class="alert alert-success" role="alert">
+            $!msg
+        </div>
+    #elseif($!success == 'false')
+        <div class="alert alert-danger" role="alert">
+            $!msg
+        </div>
+    #end
+    <form id="queryForm" role="form" class="form-horizontal" method="post" action="/migrate/addMigrateTask">
+        <div class="form-group">
+            <span class="col-sm-2 control-label">CREATED</span>
+            <div class="col-sm-10">
+                <div class="form-group row">
+                    <label class="col-sm-1 control-label" for="fromTable">Start:</label>
+                    <div class="col-sm-5">
+                        <input type="date" name="createdSymbolGte" class="form-control" placeholder="startCreated"/>
+                    </div>
+                    <label class="col-sm-1 control-label" for="toTable">End:</label>
+                    <div class="col-sm-5">
+                        <input type="date" name="createdSymbolLte" class="form-control" placeholder="endCreated"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-sm-2 control-label">TYPE</span>
+            <div class="col-sm-10">
+                <div class="form-group row">
+                    <label class="col-sm-1 control-label" for="type">Type:</label>
+                    <div class="col-sm-5">
+                        <select id="type" name="type" class='form-control' placeholder='type'>
+                            #foreach($option in $typeMap.keySet())
+                                <option value="${option}"
+                                    #if("$!status.value" == "$option")
+                                        selected="selected"
+                                    #end>
+                                    ${typeMap.get($option)}</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-sm-2 control-label">PageSize</span>
+            <div class="col-sm-10">
+                <div class="form-group row">
+                    <label class="col-sm-1 control-label" for="type">PageSize:</label>
+                    <div class="col-sm-5">
+                        <select id="type" name="pageSize" class='form-control' placeholder='type'>
+                            <option value="1000" selected="selected">1000</option>
+                            <option value="10000">10000</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-20">
+                <button id="sub" type="submit" class="btn btn-default">提交</button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>CurrentStart</th>
+            <th>Count</th>
+            <th>status</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            #if($!taskList)
+                #foreach($data in $taskList)
+                <tr>
+                    <td>$!date.format('yyyy-MM-dd',$!data.startId)</td>
+                    <td>$!date.format('yyyy-MM-dd',$!data.endId)</td>
+                    <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!data.currentStart)</td>
+                    <td>$!data.count</td>
+                    <td>$!data.status</td>
+                    <td style="width: 22%">
+                        <a href="/migrate/del?id=$!data.id&_date=$!date.systemTime">删除</a><br/>
+                        <a href="/migrate/task/$!data.id?_date=$!date.systemTime">查看</a><br/>
+                    </td>
+                </tr>
+                #end
+            #end
+        </tbody>
+    </table>
+</div>
+#define($jsblock)
+<script type="text/javascript">
+    $(function () {
+        $("span.error").each(function () {
+            $(this).parents(".form-group").addClass("has-error");
+        });
+        setTimeout(function () {
+            $(".alert").slideUp();
+        }, 2000);
+    });
+</script>
+#end

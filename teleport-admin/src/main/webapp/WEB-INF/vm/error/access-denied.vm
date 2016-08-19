@@ -1,0 +1,6 @@
+您没有权限访问该页面，该页面需要以下权限<br/>
+#if($exception)
+    #foreach($code in $!exception.codes)
+        <li>${code}</li>
+    #end
+#end

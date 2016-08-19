@@ -1,0 +1,64 @@
+#set($title = "数据迁移结果")
+#set($layout = "layout/default.vm")
+<div style="padding-top: 10px;">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>startId</th>
+            <th>endId</th>
+            <th>CurrentStart</th>
+            <th>Count</th>
+            <th>already</th>
+            <th>status</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            #if($!data)
+                <tr>
+                    <td>$!date.format('yyyy-MM-dd',$!data.startId)</td>
+                    <td>$!date.format('yyyy-MM-dd',$!data.endId)</td>
+                    <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!data.currentStart)</td>
+                    <td>$!data.count</td>
+                    <td>$!data.already</td>
+                    <td>$!data.status</td>
+                    <td>
+                        <a href="#springUrl('/migrate/del')?id=$!data.id&_date=$!date.systemTime">删除</a><br/>
+                        <a href="#springUrl('/migrate/task/')$!data.id?_date=$!date.systemTime">查看</a><br/>
+                    </td>
+                </tr>
+            #end
+        </tbody>
+    </table>
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>count</th>
+            </tr>
+        </thead>
+        <tbody>
+            #if($!data)
+                #foreach($item in $itemEnum)
+                    <tr>
+                        <td>$!item</td>
+                        <td>$!data.result.count.get($item.ordinal)</td>
+                    </tr>
+                #end
+            #end
+        </tbody>
+    </table>
+</div>
+#define($jsblock)
+<script type="text/javascript">
+    $(function () {
+        $("span.error").each(function () {
+            $(this).parents(".form-group").addClass("has-error");
+        });
+        setTimeout(function () {
+            $(".alert").slideUp();
+        }, 2000);
+    });
+</script>
+#end

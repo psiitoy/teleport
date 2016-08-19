@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation" value="classpath:sqlmap-config.xml"/>
+    </bean>
+
+    <!-- orderTraceInfo -->
+    <bean id="orderTraceInfoMongoDao" class="org.sprintdragon.teleport.admin.entity.dao.OrderTraceInfoMongoDaoImpl">
+        <property name="idWorker" ref="teleportIdWorker"/>
+        <property name="collectionName" value="order_trace_info2"/>
+    </bean>
+
+    <bean id="orderTraceInfoMysqlDao"
+          class="org.sprintdragon.teleport.admin.entity.dao.OrderTraceInfoMysqlDaoImpl">
+        <property name="dataSource" ref="teleportMysqlDataSource"/>
+        <property name="idWorker" ref="teleportIdWorker"/>
+    </bean>
+
+    <!--idWorkers begin-->
+    <bean id="teleportIdWorker" class="org.sprintdragon.teleport.persistent.utils.IdWorker" scope="singleton">
+        <constructor-arg name="datacenterId" value="0"/>
+    </bean>
+    <!--idWorkers end-->
+
+</beans>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" abstract="true">
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${pop.druid.maxWait}"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${pop.druid.timeBetweenEvictionRunsMillis}"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${pop.druid.maxIdleTime}"/>
+        <property name="validationQuery" value="${pop.druid.validationQuery}"/>
+        <property name="testWhileIdle" value="${pop.druid.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${pop.druid.testOnBorrow}"/>
+        <property name="testOnReturn" value="${pop.druid.testOnReturn}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="${pop.druid.poolPreparedStatements}"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="30"/>
+        <property name="logAbandoned" value="true"/>
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${pop.druid.filters}"/>
+        <property name="connectionProperties" value="${pop.druid.connectionProperties}"/>
+    </bean>
+
+    <bean id="popDeliveryMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.popdelivery.url}"/>
+        <property name="username" value="${pop-admin.jdbc.popdelivery.username}"/>
+        <property name="password" value="${pop-admin.jdbc.popdelivery.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value="${popdelivery.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popdelivery.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popdelivery.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popOrderMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.poporder.mysql.url}"/>
+        <property name="username" value="${pop-admin.jdbc.poporder.mysql.username}"/>
+        <property name="password" value="${pop-admin.jdbc.poporder.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${poporder.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${poporder.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${poporder.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+    
+    <bean id="popToneMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.jdtone.url}"/>
+        <property name="username" value="${pop-admin.jdbc.jdtone.username}"/>
+        <property name="password" value="${pop-admin.jdbc.jdtone.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value="${tone.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${tone.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${tone.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="taskMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.task.url}"/>
+        <property name="username" value="${pop-admin.jdbc.task.username}"/>
+        <property name="password" value="${pop-admin.jdbc.task.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${task.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${task.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${task.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="orderAroundMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.orderAround.url}"/>
+        <property name="username" value="${pop-admin.jdbc.orderAround.username}"/>
+        <property name="password" value="${pop-admin.jdbc.orderAround.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${orderAround.mysql.jdbc.initialPoolSize}" />
+        <property name="minIdle" value="${orderAround.mysql.jdbc.minPoolSize}" />
+        <property name="maxActive" value="${orderAround.mysql.jdbc.maxPoolSize}" />
+    </bean>
+
+    <bean id="orderBaseMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.orderBase.url}"/>
+        <property name="username" value="${pop-admin.jdbc.orderBase.username}"/>
+        <property name="password" value="${pop-admin.jdbc.orderBase.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${orderBase.mysql.jdbc.initialPoolSize}" />
+        <property name="minIdle" value="${orderBase.mysql.jdbc.minPoolSize}" />
+        <property name="maxActive" value="${orderBase.mysql.jdbc.maxPoolSize}" />
+    </bean>
+
+    <bean id="popSeqMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.popseq.mysql.url}"/>
+        <property name="username" value="${pop-admin.jdbc.popseq.mysql.username}"/>
+        <property name="password" value="${pop-admin.jdbc.popseq.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${popseq.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popseq.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popseq.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popOrderExportDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.poporderexport.mysql.url}"/>
+        <property name="username" value="${pop-admin.jdbc.poporderexport.mysql.username}"/>
+        <property name="password" value="${pop-admin.jdbc.poporderexport.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${poporderexport.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${poporderexport.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${poporderexport.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popFreightDataSource" class="com.alibaba.druid.pool.DruidDataSource" parent="druidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-admin.jdbc.popfreight.mysql.url}"/>
+        <property name="username" value="${pop-admin.jdbc.popfreight.mysql.username}"/>
+        <property name="password" value="${pop-admin.jdbc.popfreight.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${popfreight.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popfreight.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popfreight.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <!-- 售后popafs3数据库 -->
+    <bean id="popAfs3MysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" parent="druidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-afs3.jdbc.mysql.url}"/>
+        <property name="username" value="${pop-afs3.jdbc.mysql.username}"/>
+        <property name="password" value="${pop-afs3.jdbc.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${popafs3.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popafs3.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popafs3.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popAfs3JproxyMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" parent="druidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${pop-afs-jproxy.jdbc.mysql.url}"/>
+        <property name="username" value="${pop-afs-jproxy.jdbc.mysql.username}"/>
+        <property name="password" value="${pop-afs-jproxy.jdbc.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value=" ${popafsjproxy.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popafsjproxy.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popafsjproxy.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popEpsMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" parent="druidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${popEps.jdbc.mysql.url}"/>
+        <property name="username" value="${popEps.jdbc.mysql.username}"/>
+        <property name="password" value="${popEps.jdbc.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value="${popEps.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popEps.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popEps.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popLocMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" parent="druidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${popLoc.jdbc.mysql.url}"/>
+        <property name="username" value="${popLoc.jdbc.mysql.username}"/>
+        <property name="password" value="${popLoc.jdbc.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value="${popLoc.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popLoc.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popLoc.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+    <bean id="popFreightServiceChargeMysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" parent="druidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${pop.druid.mysql.driver.class}"/>
+        <property name="url" value="${popFreightServiceCharge.jdbc.mysql.url}"/>
+        <property name="username" value="${popFreightServiceCharge.jdbc.mysql.username}"/>
+        <property name="password" value="${popFreightServiceCharge.jdbc.mysql.password}"/>
+        <!-- 配置初始化大小、最小、最大-->
+        <property name="initialSize" value="${popFreightServiceCharge.mysql.jdbc.initialPoolSize}"/>
+        <property name="minIdle" value="${popFreightServiceCharge.mysql.jdbc.minPoolSize}"/>
+        <property name="maxActive" value="${popFreightServiceCharge.mysql.jdbc.maxPoolSize}"/>
+    </bean>
+
+</beans>

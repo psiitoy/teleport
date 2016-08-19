@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jd.pop.order.config.dao.mapper.mysql.OrderRemarkMysqlMapper">
+
+	<resultMap type="com.jd.pop.order.config.domain.orderremark.OrderRemark"
+		id="orderRemark">
+        <result column="ID" property="_id"/>
+        <result column="ORDER_ID" property="orderId"/>
+        <result column="VENDER_ID" property="venderId"/>
+        <result column="REMARK" property="remark"/>
+        <result column="CREATED" property="created"/>
+        <result column="MODIFIED" property="modified"/>
+        <result column="FLAG" property="flag"/>
+	</resultMap>
+
+	<insert id="insert" parameterType="com.jd.pop.order.config.domain.orderremark.OrderRemark">
+		INSERT INTO ORDER_REMARK (ID, ORDER_ID, VENDER_ID, REMARK, FLAG, CREATED,MODIFIED)
+        VALUES (#{_id}, #{orderId}, #{venderId}, #{remark}, #{flag}, #{modified}, #{modified})
+    </insert>
+
+	<update id="update" parameterType="com.jd.pop.order.config.domain.orderremark.OrderRemark">
+        UPDATE ORDER_REMARK
+        <set>
+            <if test="remark != null">
+                REMARK=#{remark},
+            </if>
+            <if test="flag != null">
+                FLAG=#{flag},
+            </if>
+            <if test="modified != null">
+                MODIFIED=#{modified}
+            </if>
+        </set>
+        WHERE ORDER_ID=#{orderId} and VENDER_ID=#{venderId}
+    </update>
+
+	<select id="queryOrderRemarkCount" parameterType="com.jd.pop.order.config.domain.orderremark.OrderRemark" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM ORDER_REMARK
+        <include refid="whereCondition"/>
+    </select>
+
+	<select id="queryOneOrderRemark" parameterType="com.jd.pop.order.config.domain.orderremark.OrderRemark" resultMap="orderRemark" >
+        SELECT
+        <include refid="SELECT_ALL_COLUMN"/>
+        FROM ORDER_REMARK
+        <include refid="whereCondition"/>
+    </select>
+
+    <sql id="SELECT_ALL_COLUMN">
+        ID, ORDER_ID, VENDER_ID, REMARK, FLAG, CREATED, MODIFIED
+    </sql>
+
+    <sql id="whereCondition">
+        <where>
+            <if test="orderId != null">
+                ORDER_ID = #{orderId}
+            </if>
+            <if test="venderId != null">
+                AND VENDER_ID = #{venderId}
+            </if>
+        </where>
+    </sql>
+</mapper>

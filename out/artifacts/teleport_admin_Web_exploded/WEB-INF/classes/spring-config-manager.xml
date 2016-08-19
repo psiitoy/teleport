@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+    <!-- 数据迁移 -->
+
+    <bean id="dataQueryManager" class="org.sprintdragon.migrate.DataQueryManagerImpl">
+        <property name="dataQueryDaoMap">
+            <util:map>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).AROUND_MYSQL}" value-ref="aroundMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).DELIVERY_MYSQL}" value-ref="deliveryMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPORDER_MYSQL}" value-ref="poporderMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPTASK_MYSQL}" value-ref="taskMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPTONE_MYSQL}" value-ref="popToneMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).BASE_MYSQL}" value-ref="orderBaseMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPSEQ_MYSQL}" value-ref="popSeqMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPORDEREXPORT_MYSQL}" value-ref="popOrderExportDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPFREIGHT_MYSQL}" value-ref="popFreightDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPAFS3_MYSQL}" value-ref="popAfs3MysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPAFS3JPROXY_MYSQL}" value-ref="popAfs3JproxyMysqlDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPEPS_MYSQL}" value-ref="popEpsDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POPLOC_MYSQL}" value-ref="popLocDataQueryDao"/>
+                <entry key="#{T(com.jd.pop.order.config.migrate.DataSourceEnum).POP_FREIGHT_SERVICE_CHARGE_MYSQL}" value-ref="popFreightServiceChargeDataQueryDao"/>
+            </util:map>
+        </property>
+    </bean>
+
+    <bean id="esManager" class="org.sprintdragon.migrate.EsManagerImpl">
+        <property name="index" value="poporderes"/>
+    </bean>
+
+</beans>

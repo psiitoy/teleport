@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+    <bean id="popOrderMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="popOrderMysqlDataSource" />
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popOrderMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popOrderMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popDeliveryMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="popDeliveryMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popDeliveryMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popDeliveryMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popTaskMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="taskMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popTaskMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="taskMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popToneMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="popToneMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popToneMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popToneMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="orderAroundMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="orderAroundMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="orderAroundMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="orderAroundMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="orderBaseMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="orderBaseMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="orderBaseMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="orderBaseMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popSeqMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="popSeqMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popSeqMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popSeqMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popOrderExportJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popOrderExportDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popFreightJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popFreightDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popAfs3MysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="popAfs3MysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popAfs3MysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popAfs3MysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popAfs3JproxyMysqlSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="popAfs3JproxyMysqlDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <bean id="popAfs3JproxyMysqlSqlSessionTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popAfs3JproxyMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popEpsMysqlJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popEpsMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popLocMysqlJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popLocMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="popFreightServiceChargeMysqlJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg index="0" ref="popFreightServiceChargeMysqlDataSource"/>
+        <property name="queryTimeout" value="15"/>
+    </bean>
+
+    <bean id="orderRemarkMysqlMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.jd.pop.order.config.dao.mapper.mysql.OrderRemarkMysqlMapper"/>
+        <property name="sqlSessionFactory" ref="popOrderMysqlSqlSessionFactory"/>
+    </bean>
+
+    <!-- 数据迁移 -->
+    <bean id="poporderMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popOrderMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="deliveryMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popDeliveryMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="taskMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popTaskMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="popToneMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popToneMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="aroundMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="orderAroundMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="orderBaseMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="orderBaseMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="popSeqMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popSeqMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="popOrderExportDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popOrderExportJdbcTemplate"/>
+    </bean>
+
+    <bean id="popFreightDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popFreightJdbcTemplate"/>
+    </bean>
+
+    <bean id="popAfs3MysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popAfs3MysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="popAfs3JproxyMysqlDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popAfs3JproxyMysqlSqlSessionTemplate"/>
+    </bean>
+
+    <bean id="popEpsDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popEpsMysqlJdbcTemplate"/>
+    </bean>
+
+    <bean id="popLocDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popLocMysqlJdbcTemplate"/>
+    </bean>
+
+    <bean id="popFreightServiceChargeDataQueryDao" class="org.sprintdragon.migrate.DataQueryDaoImpl">
+        <property name="jdbcTemplate" ref="popFreightServiceChargeMysqlJdbcTemplate"/>
+    </bean>
+
+</beans>
