@@ -13,6 +13,7 @@
         <module>teleport-admin</module>
         <module>teleport-common</module>
         <module>teleport-persistent</module>
+        <module>teleport-jpa</module>
     </modules>
 
     <properties>
@@ -49,6 +50,7 @@
         <mysql-connector-java.version>5.1.5</mysql-connector-java.version>
         <druid.version>1.0.16.jd.1</druid.version>
 
+        <spring-data-elasticsearch.version>1.0.0.RELEASE</spring-data-elasticsearch.version>
     </properties>
 
     <dependencyManagement>
@@ -279,6 +281,14 @@
                 <artifactId>reactor-spring-context</artifactId>
                 <version>${reactor.version}</version>
             </dependency>
+
+            <!--spring data-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-elasticsearch</artifactId>
+                <version>${spring-data-elasticsearch.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

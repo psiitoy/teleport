@@ -28,5 +28,6 @@
     <import resource="spring-config-dao.xml"/>
     <import resource="spring-config-manager.xml"/>
     <import resource="spring-config-mongo.xml"/>
+    <!--<import resource="spring-config-es.xml"/>-->
 
 </beans>
