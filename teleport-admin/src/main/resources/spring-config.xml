@@ -29,6 +29,5 @@
     <import resource="spring-config-manager.xml"/>
     <import resource="spring-config-mongo.xml"/>
     <!--<import resource="spring-config-es.xml"/>-->
-    <import resource="spring-config-jpa.xml"/>
 
 </beans>
