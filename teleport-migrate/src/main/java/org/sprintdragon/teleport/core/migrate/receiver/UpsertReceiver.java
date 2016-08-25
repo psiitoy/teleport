@@ -69,7 +69,7 @@ public class UpsertReceiver implements Consumer<Event<Pair<Integer, Object>>> {
         consumerEventBus.on($(ReactorConstants.MIGRATE_UPSERT), this);
     }
 
-    boolean onlyInsert = true;
+    boolean onlyInsert = false;
 
     @Override
     public void accept(Event<Pair<Integer, Object>> pairEvent) {
