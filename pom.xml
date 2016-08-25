@@ -13,7 +13,6 @@
         <module>teleport-admin</module>
         <module>teleport-common</module>
         <module>teleport-persistent</module>
-        <module>teleport-jpa</module>
     </modules>
 
     <properties>

@@ -2,13 +2,9 @@ package org.sprintdragon.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.sprintdragon.teleport.jpa.OrderTraceInfoMongoInfo;
-import org.sprintdragon.teleport.jpa.repository.OrderTraceMongoInfoRepository;
+import org.sprintdragon.teleport.jpa.repository.OrderTraceInfoJpaRepository;
 
 import javax.annotation.Resource;
 
@@ -20,15 +16,10 @@ import javax.annotation.Resource;
 public class JpaTest {
 
     @Resource
-    OrderTraceMongoInfoRepository repository;
+    OrderTraceInfoJpaRepository repository;
 
     @Test
     public void testGet() throws Exception {
-        Pageable pageable = new PageRequest(1, 10);
-        Page<OrderTraceInfoMongoInfo> page = repository.findAll(pageable);
-        System.out.println("##" + page);
-        pageable = new PageRequest(2, 10);
-        page = repository.findAll(pageable);
-        System.out.println("##" + page);
+        System.out.println("##" + repository.findOne(766200478559182848l));
     }
 }
