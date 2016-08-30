@@ -1,79 +1,169 @@
 package org.sprintdragon.teleport.admin.entity.domain;
 
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+
 /**
  * Created by wangdi on 16-8-16.
  */
 public class OrderTraceInfoMysqlBean {
 
+    /**
+     * 主键Id(全局唯一)
+     */
+    @NotNull
     private Long id;
+
+    /**
+     * 订单号
+     */
+    @NotNull
     private Long orderId;
+
+    /**
+     * 商家Id
+     */
+    @NotNull
     private Long venderId;
-    private Long created;
-    private String createdTime;
-    private Long modified;
-    private String modifiedTime;
-    private Integer type;//(广州1、卓志2，宁波3，杭州4)
-    private Integer status;// (-1失败,0执行中，1成功,5截停中)
-    private String msg;
-    private Long orderCreateDate;
-    private String orderCreateTime;
-    private Integer storageAndShipStatus; //出库发货状态
-    private String storageAndShipMsg; //出库发货信息
-    private String customsId;   //海关
-    private String customsModel;  //模式
-    //支付单号
-    private String paymentNo;
-    // 支付平台类型名称(京东网银在线、财付通、其它)
-    private String payPlatformType;
+
+    /**
+     * 海关订单的入库时间
+     */
+    private Date created;
+
+    /**
+     * 海关订单的更新时间
+     */
+    private Date modified;
+
+    /**
+     * 京东订单的创建时间
+     */
+    @NotNull
+    private Date orderCreateTime;
+
+    /**
+     * 清关时间
+     */
+    private Date clearanceTime;
+
+    /**
+     * 保税区Id
+     */
+    @NotNull
+    private String customsId;
+
+    /**
+     * 保税区模式
+     */
+    @NotNull
+    private String customsModel;
+
+    /**
+     * 关区代码
+     */
+    private String customsRegionCode;
+
+    /**
+     * 错误码
+     */
+    private Integer errorCode;
+
+
+    /**
+     * 服务商Id
+     */
+    private String merchantId;
+
+    /**
+     * 父支付单号(交易流水号)
+     */
+    private String parentPaymentNo;
+
+    /**
+     * 支付枚举号
+     */
     private String payEnumNo;
 
-    //订单分发到各支付平台状态
-    private Integer fenFaStatus;
-    private String fenFaRemark;
-    private Integer processStatus;
-    private String processStatusMsg;
+    /**
+     * 支付平台类型
+     */
+    private String payPlatformType;
 
-    private Long clearanceTime; //清关结果回调时间
-    private String venderType;//自营 Or Pop
-    private Long storeId;   //库房id
-    private String merchantId;  //服务商id
-    private String payTime;
-    // 支付平台类型码(1:京东网银在线 2:财付通 3:其它)
-    private String payPlatformTypeCode;
-    private Integer errorCode;
+    /**
+     * 支付时间
+     */
+    private Date payTime;
+
+    /**
+     * 支付单号
+     */
+    private String paymentNo;
+
+    /**
+     * 订单的状态
+     */
+    @NotNull
+    private Integer processStatus;
+
+    /**
+     * 订单状态描述
+     */
+    @NotNull
+    private String processMsg;
+
+    /**
+     * 订单出库发货状态
+     */
+    private Integer storageShipStatus;
+
+    /**
+     * 订单出库发货状态描述
+     */
+    private String storageShipMsg;
+
+    /**
+     * 库房Id
+     */
+    private Long storeId;
+
+    /**
+     * 订单类型
+     */
+    private String venderType;
+
+    /**
+     * 存储供商家查看的友好提示信息
+     */
+    private String msg;
 
     @Override
     public String toString() {
         return "OrderTraceInfoMysqlBean{" +
-                "orderId=" + orderId +
+                "id=" + id +
+                ", orderId=" + orderId +
                 ", venderId=" + venderId +
                 ", created=" + created +
-                ", createdTime='" + createdTime + '\'' +
                 ", modified=" + modified +
-                ", modifiedTime='" + modifiedTime + '\'' +
-                ", type=" + type +
-                ", status=" + status +
-                ", msg='" + msg + '\'' +
-                ", orderCreateDate=" + orderCreateDate +
-                ", orderCreateTime='" + orderCreateTime + '\'' +
-                ", storageAndShipStatus=" + storageAndShipStatus +
-                ", storageAndShipMsg='" + storageAndShipMsg + '\'' +
+                ", orderCreateTime=" + orderCreateTime +
+                ", clearanceTime=" + clearanceTime +
                 ", customsId='" + customsId + '\'' +
                 ", customsModel='" + customsModel + '\'' +
-                ", paymentNo='" + paymentNo + '\'' +
-                ", payPlatformType='" + payPlatformType + '\'' +
-                ", payEnumNo='" + payEnumNo + '\'' +
-                ", fenFaStatus=" + fenFaStatus +
-                ", fenFaRemark='" + fenFaRemark + '\'' +
-                ", processStatus=" + processStatus +
-                ", processStatusMsg='" + processStatusMsg + '\'' +
-                ", clearanceTime=" + clearanceTime +
-                ", venderType='" + venderType + '\'' +
-                ", storeId=" + storeId +
-                ", merchantId='" + merchantId + '\'' +
-                ", payTime='" + payTime + '\'' +
-                ", payPlatformTypeCode='" + payPlatformTypeCode + '\'' +
+                ", customsRegionCode='" + customsRegionCode + '\'' +
                 ", errorCode=" + errorCode +
+                ", merchantId='" + merchantId + '\'' +
+                ", parentPaymentNo='" + parentPaymentNo + '\'' +
+                ", payEnumNo='" + payEnumNo + '\'' +
+                ", payPlatformType='" + payPlatformType + '\'' +
+                ", payTime=" + payTime +
+                ", paymentNo='" + paymentNo + '\'' +
+                ", processStatus=" + processStatus +
+                ", processMsg='" + processMsg + '\'' +
+                ", storageShipStatus=" + storageShipStatus +
+                ", storageShipMsg='" + storageShipMsg + '\'' +
+                ", storeId=" + storeId +
+                ", venderType='" + venderType + '\'' +
+                ", msg='" + msg + '\'' +
                 '}';
     }
 
@@ -101,92 +191,36 @@ public class OrderTraceInfoMysqlBean {
         this.venderId = venderId;
     }
 
-    public Long getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Long created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public String getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(String createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Long getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    public void setModified(Long modified) {
+    public void setModified(Date modified) {
         this.modified = modified;
     }
 
-    public String getModifiedTime() {
-        return modifiedTime;
-    }
-
-    public void setModifiedTime(String modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Long getOrderCreateDate() {
-        return orderCreateDate;
-    }
-
-    public void setOrderCreateDate(Long orderCreateDate) {
-        this.orderCreateDate = orderCreateDate;
-    }
-
-    public String getOrderCreateTime() {
+    public Date getOrderCreateTime() {
         return orderCreateTime;
     }
 
-    public void setOrderCreateTime(String orderCreateTime) {
+    public void setOrderCreateTime(Date orderCreateTime) {
         this.orderCreateTime = orderCreateTime;
     }
 
-    public Integer getStorageAndShipStatus() {
-        return storageAndShipStatus;
+    public Date getClearanceTime() {
+        return clearanceTime;
     }
 
-    public void setStorageAndShipStatus(Integer storageAndShipStatus) {
-        this.storageAndShipStatus = storageAndShipStatus;
-    }
-
-    public String getStorageAndShipMsg() {
-        return storageAndShipMsg;
-    }
-
-    public void setStorageAndShipMsg(String storageAndShipMsg) {
-        this.storageAndShipMsg = storageAndShipMsg;
+    public void setClearanceTime(Date clearanceTime) {
+        this.clearanceTime = clearanceTime;
     }
 
     public String getCustomsId() {
@@ -205,84 +239,20 @@ public class OrderTraceInfoMysqlBean {
         this.customsModel = customsModel;
     }
 
-    public String getPaymentNo() {
-        return paymentNo;
+    public String getCustomsRegionCode() {
+        return customsRegionCode;
     }
 
-    public void setPaymentNo(String paymentNo) {
-        this.paymentNo = paymentNo;
+    public void setCustomsRegionCode(String customsRegionCode) {
+        this.customsRegionCode = customsRegionCode;
     }
 
-    public String getPayPlatformType() {
-        return payPlatformType;
+    public Integer getErrorCode() {
+        return errorCode;
     }
 
-    public void setPayPlatformType(String payPlatformType) {
-        this.payPlatformType = payPlatformType;
-    }
-
-    public String getPayEnumNo() {
-        return payEnumNo;
-    }
-
-    public void setPayEnumNo(String payEnumNo) {
-        this.payEnumNo = payEnumNo;
-    }
-
-    public Integer getFenFaStatus() {
-        return fenFaStatus;
-    }
-
-    public void setFenFaStatus(Integer fenFaStatus) {
-        this.fenFaStatus = fenFaStatus;
-    }
-
-    public String getFenFaRemark() {
-        return fenFaRemark;
-    }
-
-    public void setFenFaRemark(String fenFaRemark) {
-        this.fenFaRemark = fenFaRemark;
-    }
-
-    public Integer getProcessStatus() {
-        return processStatus;
-    }
-
-    public void setProcessStatus(Integer processStatus) {
-        this.processStatus = processStatus;
-    }
-
-    public String getProcessStatusMsg() {
-        return processStatusMsg;
-    }
-
-    public void setProcessStatusMsg(String processStatusMsg) {
-        this.processStatusMsg = processStatusMsg;
-    }
-
-    public Long getClearanceTime() {
-        return clearanceTime;
-    }
-
-    public void setClearanceTime(Long clearanceTime) {
-        this.clearanceTime = clearanceTime;
-    }
-
-    public String getVenderType() {
-        return venderType;
-    }
-
-    public void setVenderType(String venderType) {
-        this.venderType = venderType;
-    }
-
-    public Long getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Long storeId) {
-        this.storeId = storeId;
+    public void setErrorCode(Integer errorCode) {
+        this.errorCode = errorCode;
     }
 
     public String getMerchantId() {
@@ -293,27 +263,99 @@ public class OrderTraceInfoMysqlBean {
         this.merchantId = merchantId;
     }
 
-    public String getPayTime() {
+    public String getParentPaymentNo() {
+        return parentPaymentNo;
+    }
+
+    public void setParentPaymentNo(String parentPaymentNo) {
+        this.parentPaymentNo = parentPaymentNo;
+    }
+
+    public String getPayEnumNo() {
+        return payEnumNo;
+    }
+
+    public void setPayEnumNo(String payEnumNo) {
+        this.payEnumNo = payEnumNo;
+    }
+
+    public String getPayPlatformType() {
+        return payPlatformType;
+    }
+
+    public void setPayPlatformType(String payPlatformType) {
+        this.payPlatformType = payPlatformType;
+    }
+
+    public Date getPayTime() {
         return payTime;
     }
 
-    public void setPayTime(String payTime) {
+    public void setPayTime(Date payTime) {
         this.payTime = payTime;
     }
 
-    public String getPayPlatformTypeCode() {
-        return payPlatformTypeCode;
+    public String getPaymentNo() {
+        return paymentNo;
     }
 
-    public void setPayPlatformTypeCode(String payPlatformTypeCode) {
-        this.payPlatformTypeCode = payPlatformTypeCode;
+    public void setPaymentNo(String paymentNo) {
+        this.paymentNo = paymentNo;
     }
 
-    public Integer getErrorCode() {
-        return errorCode;
+    public Integer getProcessStatus() {
+        return processStatus;
     }
 
-    public void setErrorCode(Integer errorCode) {
-        this.errorCode = errorCode;
+    public void setProcessStatus(Integer processStatus) {
+        this.processStatus = processStatus;
+    }
+
+    public String getProcessMsg() {
+        return processMsg;
+    }
+
+    public void setProcessMsg(String processMsg) {
+        this.processMsg = processMsg;
+    }
+
+    public Integer getStorageShipStatus() {
+        return storageShipStatus;
+    }
+
+    public void setStorageShipStatus(Integer storageShipStatus) {
+        this.storageShipStatus = storageShipStatus;
+    }
+
+    public String getStorageShipMsg() {
+        return storageShipMsg;
+    }
+
+    public void setStorageShipMsg(String storageShipMsg) {
+        this.storageShipMsg = storageShipMsg;
+    }
+
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
+    public String getVenderType() {
+        return venderType;
+    }
+
+    public void setVenderType(String venderType) {
+        this.venderType = venderType;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

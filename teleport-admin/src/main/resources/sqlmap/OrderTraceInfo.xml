@@ -4,72 +4,59 @@
     <typeAlias alias="OrderTraceInfoMysqlBean"
                type="org.sprintdragon.teleport.admin.entity.domain.OrderTraceInfoMysqlBean"/>
     <typeAlias alias="OrderTraceInfoMysqlBeanQuery"
-               type="org.sprintdragon.teleport.persistent.query.DefaultBaseQuery"/><!-- 返回结果集类型 -->
+               type="org.sprintdragon.teleport.admin.entity.domain.OrderTraceInfoMysqlQuery"/><!-- 返回结果集类型 -->
     <resultMap id="OrderTraceInfoMysqlBeanResultMap" class="OrderTraceInfoMysqlBean">
         <result column="PROCESS_STATUS" property="processStatus"/>
-        <result column="ORDER_CREATE_DATE" property="orderCreateDate"/>
-        <result column="VENDER_ID" property="venderId"/>
-        <result column="TYPE" property="type"/>
-        <result column="PAY_TIME" property="payTime"/>
-        <result column="ID" property="id"/>
-        <result column="CREATED" property="created"/>
-        <result column="MERCHANT_ID" property="merchantId"/>
-        <result column="PAYMENT_NO" property="paymentNo"/>
-        <result column="PROCESS_STATUS_MSG" property="processStatusMsg"/>
-        <result column="ORDER_ID" property="orderId"/>
-        <result column="STORAGE_AND_SHIP_MSG" property="storageAndShipMsg"/>
-        <result column="STATUS" property="status"/>
-        <result column="CREATED_TIME" property="createdTime"/>
         <result column="PAY_ENUM_NO" property="payEnumNo"/>
-        <result column="MODIFIED_TIME" property="modifiedTime"/>
-        <result column="FEN_FA_STATUS" property="fenFaStatus"/>
-        <result column="PAY_PLATFORM_TYPE_CODE" property="payPlatformTypeCode"/>
+        <result column="VENDER_ID" property="venderId"/>
+        <result column="CUSTOMS_REGION_CODE" property="customsRegionCode"/>
         <result column="MSG" property="msg"/>
+        <result column="PAY_TIME" property="payTime"/>
+        <result column="PROCESS_MSG" property="processMsg"/>
         <result column="MODIFIED" property="modified"/>
+        <result column="ID" property="id"/>
         <result column="ORDER_CREATE_TIME" property="orderCreateTime"/>
-        <result column="STORAGE_AND_SHIP_STATUS" property="storageAndShipStatus"/>
         <result column="PAY_PLATFORM_TYPE" property="payPlatformType"/>
         <result column="VENDER_TYPE" property="venderType"/>
+        <result column="STORAGE_SHIP_STATUS" property="storageShipStatus"/>
+        <result column="STORAGE_SHIP_MSG" property="storageShipMsg"/>
+        <result column="CREATED" property="created"/>
         <result column="CLEARANCE_TIME" property="clearanceTime"/>
         <result column="ERROR_CODE" property="errorCode"/>
         <result column="CUSTOMS_MODEL" property="customsModel"/>
+        <result column="MERCHANT_ID" property="merchantId"/>
+        <result column="PARENT_PAYMENT_NO" property="parentPaymentNo"/>
         <result column="STORE_ID" property="storeId"/>
+        <result column="PAYMENT_NO" property="paymentNo"/>
+        <result column="ORDER_ID" property="orderId"/>
         <result column="CUSTOMS_ID" property="customsId"/>
-        <result column="FEN_FA_REMARK" property="fenFaRemark"/>
     </resultMap><!--[domain所有条件] -->
     <sql id="allCondition">
         <dynamic prepend="WHERE">
             <isNotEmpty prepend=" AND " property="clearanceTime">CLEARANCE_TIME=#clearanceTime#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="created">CREATED=#created#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="createdTime">CREATED_TIME=#createdTime#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="customsId">CUSTOMS_ID=#customsId#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="customsModel">CUSTOMS_MODEL=#customsModel#</isNotEmpty>
+            <isNotEmpty prepend=" AND " property="customsRegionCode">CUSTOMS_REGION_CODE=#customsRegionCode#
+            </isNotEmpty>
             <isNotEmpty prepend=" AND " property="errorCode">ERROR_CODE=#errorCode#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="fenFaRemark">FEN_FA_REMARK=#fenFaRemark#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="fenFaStatus">FEN_FA_STATUS=#fenFaStatus#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="id">ID=#id#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="merchantId">MERCHANT_ID=#merchantId#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="modified">MODIFIED=#modified#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="modifiedTime">MODIFIED_TIME=#modifiedTime#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="msg">MSG=#msg#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="orderCreateDate">ORDER_CREATE_DATE=#orderCreateDate#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="orderCreateTime">ORDER_CREATE_TIME=#orderCreateTime#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="orderId">ORDER_ID=#orderId#</isNotEmpty>
+            <isNotEmpty prepend=" AND " property="parentPaymentNo">PARENT_PAYMENT_NO=#parentPaymentNo#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="payEnumNo">PAY_ENUM_NO=#payEnumNo#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="payPlatformType">PAY_PLATFORM_TYPE=#payPlatformType#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="payPlatformTypeCode">PAY_PLATFORM_TYPE_CODE=#payPlatformTypeCode#
-            </isNotEmpty>
             <isNotEmpty prepend=" AND " property="payTime">PAY_TIME=#payTime#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="paymentNo">PAYMENT_NO=#paymentNo#</isNotEmpty>
+            <isNotEmpty prepend=" AND " property="processMsg">PROCESS_MSG=#processMsg#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="processStatus">PROCESS_STATUS=#processStatus#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="processStatusMsg">PROCESS_STATUS_MSG=#processStatusMsg#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="status">STATUS=#status#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="storageAndShipMsg">STORAGE_AND_SHIP_MSG=#storageAndShipMsg#
-            </isNotEmpty>
-            <isNotEmpty prepend=" AND " property="storageAndShipStatus">STORAGE_AND_SHIP_STATUS=#storageAndShipStatus#
+            <isNotEmpty prepend=" AND " property="storageShipMsg">STORAGE_SHIP_MSG=#storageShipMsg#</isNotEmpty>
+            <isNotEmpty prepend=" AND " property="storageShipStatus">STORAGE_SHIP_STATUS=#storageShipStatus#
             </isNotEmpty>
             <isNotEmpty prepend=" AND " property="storeId">STORE_ID=#storeId#</isNotEmpty>
-            <isNotEmpty prepend=" AND " property="type">TYPE=#type#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="venderId">VENDER_ID=#venderId#</isNotEmpty>
             <isNotEmpty prepend=" AND " property="venderType">VENDER_TYPE=#venderType#</isNotEmpty>
         </dynamic>
@@ -92,7 +79,7 @@
                 <![CDATA[ MODIFIED <= #modifiedSymbolLte#]]></isNotEmpty>
         </dynamic>
     </sql>
-    <sql id="Base_Column_List"> PROCESS_STATUS, ORDER_CREATE_DATE, VENDER_ID, TYPE, PAY_TIME, ID, CREATED, MERCHANT_ID, PAYMENT_NO, PROCESS_STATUS_MSG, ORDER_ID, STORAGE_AND_SHIP_MSG, STATUS, CREATED_TIME, PAY_ENUM_NO, MODIFIED_TIME, FEN_FA_STATUS, PAY_PLATFORM_TYPE_CODE, MSG, MODIFIED, ORDER_CREATE_TIME, STORAGE_AND_SHIP_STATUS, PAY_PLATFORM_TYPE, VENDER_TYPE, CLEARANCE_TIME, ERROR_CODE, CUSTOMS_MODEL, STORE_ID, CUSTOMS_ID, FEN_FA_REMARK</sql><!--根据主键查单条-->
+    <sql id="Base_Column_List"> PROCESS_STATUS, PAY_ENUM_NO, VENDER_ID, CUSTOMS_REGION_CODE, MSG, PAY_TIME, PROCESS_MSG, MODIFIED, ID, ORDER_CREATE_TIME, PAY_PLATFORM_TYPE, VENDER_TYPE, STORAGE_SHIP_STATUS, STORAGE_SHIP_MSG, CREATED, CLEARANCE_TIME, ERROR_CODE, CUSTOMS_MODEL, MERCHANT_ID, PARENT_PAYMENT_NO, STORE_ID, PAYMENT_NO, ORDER_ID, CUSTOMS_ID</sql><!--根据主键查单条-->
     <select id="Get" parameterClass="long" resultMap="OrderTraceInfoMysqlBeanResultMap">SELECT
         <include refid="Base_Column_List"/>
         FROM order_trace_info_mysql_bean WHERE id=#id:BIGINT#
@@ -123,73 +110,61 @@
         limit #index# ,#pageSize#
     </select><!--插入-->
     <insert id="Insert" parameterClass="OrderTraceInfoMysqlBean">INSERT INTO order_trace_info_mysql_bean (<include
-            refid="Base_Column_List"/>) VALUES ( #processStatus#, #orderCreateDate#, #venderId#, #type#, #payTime#,
-        #id#, unix_timestamp(), #merchantId#, #paymentNo#, #processStatusMsg#, #orderId#, #storageAndShipMsg#, #status#,
-        #createdTime#, #payEnumNo#, #modifiedTime#, #fenFaStatus#, #payPlatformTypeCode#, #msg#, unix_timestamp(),
-        #orderCreateTime#, #storageAndShipStatus#, #payPlatformType#, #venderType#, #clearanceTime#, #errorCode#,
-        #customsModel#, #storeId#, #customsId#, #fenFaRemark#)
+            refid="Base_Column_List"/>) VALUES ( #processStatus#, #payEnumNo#, #venderId#, #customsRegionCode#, #msg#,
+        #payTime#, #processMsg#, now(), #id#, #orderCreateTime#, #payPlatformType#, #venderType#, #storageShipStatus#,
+        #storageShipMsg#, now(), #clearanceTime#, #errorCode#, #customsModel#, #merchantId#, #parentPaymentNo#,
+        #storeId#, #paymentNo#, #orderId#, #customsId#)
     </insert><!--更新-->
-    <update id="Update" parameterClass="OrderTraceInfoMysqlBean">UPDATE order_trace_info_mysql_bean SET MODIFIED=unix_timestamp()
+    <update id="Update" parameterClass="OrderTraceInfoMysqlBean">UPDATE order_trace_info_mysql_bean SET MODIFIED=now()
         <isNotEmpty property="processStatus">,PROCESS_STATUS=#processStatus#</isNotEmpty>
-        <isNotEmpty property="orderCreateDate">,ORDER_CREATE_DATE=#orderCreateDate#</isNotEmpty>
-        <isNotEmpty property="venderId">,VENDER_ID=#venderId#</isNotEmpty>
-        <isNotEmpty property="type">,TYPE=#type#</isNotEmpty>
-        <isNotEmpty property="payTime">,PAY_TIME=#payTime#</isNotEmpty>
-        <isNotEmpty property="merchantId">,MERCHANT_ID=#merchantId#</isNotEmpty>
-        <isNotEmpty property="paymentNo">,PAYMENT_NO=#paymentNo#</isNotEmpty>
-        <isNotEmpty property="processStatusMsg">,PROCESS_STATUS_MSG=#processStatusMsg#</isNotEmpty>
-        <isNotEmpty property="orderId">,ORDER_ID=#orderId#</isNotEmpty>
-        <isNotEmpty property="storageAndShipMsg">,STORAGE_AND_SHIP_MSG=#storageAndShipMsg#</isNotEmpty>
-        <isNotEmpty property="status">,STATUS=#status#</isNotEmpty>
-        <isNotEmpty property="createdTime">,CREATED_TIME=#createdTime#</isNotEmpty>
         <isNotEmpty property="payEnumNo">,PAY_ENUM_NO=#payEnumNo#</isNotEmpty>
-        <isNotEmpty property="modifiedTime">,MODIFIED_TIME=#modifiedTime#</isNotEmpty>
-        <isNotEmpty property="fenFaStatus">,FEN_FA_STATUS=#fenFaStatus#</isNotEmpty>
-        <isNotEmpty property="payPlatformTypeCode">,PAY_PLATFORM_TYPE_CODE=#payPlatformTypeCode#</isNotEmpty>
+        <isNotEmpty property="venderId">,VENDER_ID=#venderId#</isNotEmpty>
+        <isNotEmpty property="customsRegionCode">,CUSTOMS_REGION_CODE=#customsRegionCode#</isNotEmpty>
         <isNotEmpty property="msg">,MSG=#msg#</isNotEmpty>
+        <isNotEmpty property="payTime">,PAY_TIME=#payTime#</isNotEmpty>
+        <isNotEmpty property="processMsg">,PROCESS_MSG=#processMsg#</isNotEmpty>
         <isNotEmpty property="orderCreateTime">,ORDER_CREATE_TIME=#orderCreateTime#</isNotEmpty>
-        <isNotEmpty property="storageAndShipStatus">,STORAGE_AND_SHIP_STATUS=#storageAndShipStatus#</isNotEmpty>
         <isNotEmpty property="payPlatformType">,PAY_PLATFORM_TYPE=#payPlatformType#</isNotEmpty>
         <isNotEmpty property="venderType">,VENDER_TYPE=#venderType#</isNotEmpty>
+        <isNotEmpty property="storageShipStatus">,STORAGE_SHIP_STATUS=#storageShipStatus#</isNotEmpty>
+        <isNotEmpty property="storageShipMsg">,STORAGE_SHIP_MSG=#storageShipMsg#</isNotEmpty>
         <isNotEmpty property="clearanceTime">,CLEARANCE_TIME=#clearanceTime#</isNotEmpty>
         <isNotEmpty property="errorCode">,ERROR_CODE=#errorCode#</isNotEmpty>
         <isNotEmpty property="customsModel">,CUSTOMS_MODEL=#customsModel#</isNotEmpty>
+        <isNotEmpty property="merchantId">,MERCHANT_ID=#merchantId#</isNotEmpty>
+        <isNotEmpty property="parentPaymentNo">,PARENT_PAYMENT_NO=#parentPaymentNo#</isNotEmpty>
         <isNotEmpty property="storeId">,STORE_ID=#storeId#</isNotEmpty>
+        <isNotEmpty property="paymentNo">,PAYMENT_NO=#paymentNo#</isNotEmpty>
+        <isNotEmpty property="orderId">,ORDER_ID=#orderId#</isNotEmpty>
         <isNotEmpty property="customsId">,CUSTOMS_ID=#customsId#</isNotEmpty>
-        <isNotEmpty property="fenFaRemark">,FEN_FA_REMARK=#fenFaRemark#</isNotEmpty>
         WHERE id=#id:BIGINT#
     </update><!--cas更新-->
     <update id="UpdateCasModify" parameterClass="OrderTraceInfoMysqlBean">UPDATE order_trace_info_mysql_bean SET
-        MODIFIED=unix_timestamp()
+        MODIFIED=now()
         <isNotEmpty property="processStatus">,PROCESS_STATUS=#processStatus#</isNotEmpty>
-        <isNotEmpty property="orderCreateDate">,ORDER_CREATE_DATE=#orderCreateDate#</isNotEmpty>
-        <isNotEmpty property="venderId">,VENDER_ID=#venderId#</isNotEmpty>
-        <isNotEmpty property="type">,TYPE=#type#</isNotEmpty>
-        <isNotEmpty property="payTime">,PAY_TIME=#payTime#</isNotEmpty>
-        <isNotEmpty property="merchantId">,MERCHANT_ID=#merchantId#</isNotEmpty>
-        <isNotEmpty property="paymentNo">,PAYMENT_NO=#paymentNo#</isNotEmpty>
-        <isNotEmpty property="processStatusMsg">,PROCESS_STATUS_MSG=#processStatusMsg#</isNotEmpty>
-        <isNotEmpty property="orderId">,ORDER_ID=#orderId#</isNotEmpty>
-        <isNotEmpty property="storageAndShipMsg">,STORAGE_AND_SHIP_MSG=#storageAndShipMsg#</isNotEmpty>
-        <isNotEmpty property="status">,STATUS=#status#</isNotEmpty>
-        <isNotEmpty property="createdTime">,CREATED_TIME=#createdTime#</isNotEmpty>
         <isNotEmpty property="payEnumNo">,PAY_ENUM_NO=#payEnumNo#</isNotEmpty>
-        <isNotEmpty property="modifiedTime">,MODIFIED_TIME=#modifiedTime#</isNotEmpty>
-        <isNotEmpty property="fenFaStatus">,FEN_FA_STATUS=#fenFaStatus#</isNotEmpty>
-        <isNotEmpty property="payPlatformTypeCode">,PAY_PLATFORM_TYPE_CODE=#payPlatformTypeCode#</isNotEmpty>
+        <isNotEmpty property="venderId">,VENDER_ID=#venderId#</isNotEmpty>
+        <isNotEmpty property="customsRegionCode">,CUSTOMS_REGION_CODE=#customsRegionCode#</isNotEmpty>
         <isNotEmpty property="msg">,MSG=#msg#</isNotEmpty>
+        <isNotEmpty property="payTime">,PAY_TIME=#payTime#</isNotEmpty>
+        <isNotEmpty property="processMsg">,PROCESS_MSG=#processMsg#</isNotEmpty>
         <isNotEmpty property="orderCreateTime">,ORDER_CREATE_TIME=#orderCreateTime#</isNotEmpty>
-        <isNotEmpty property="storageAndShipStatus">,STORAGE_AND_SHIP_STATUS=#storageAndShipStatus#</isNotEmpty>
         <isNotEmpty property="payPlatformType">,PAY_PLATFORM_TYPE=#payPlatformType#</isNotEmpty>
         <isNotEmpty property="venderType">,VENDER_TYPE=#venderType#</isNotEmpty>
+        <isNotEmpty property="storageShipStatus">,STORAGE_SHIP_STATUS=#storageShipStatus#</isNotEmpty>
+        <isNotEmpty property="storageShipMsg">,STORAGE_SHIP_MSG=#storageShipMsg#</isNotEmpty>
         <isNotEmpty property="clearanceTime">,CLEARANCE_TIME=#clearanceTime#</isNotEmpty>
         <isNotEmpty property="errorCode">,ERROR_CODE=#errorCode#</isNotEmpty>
         <isNotEmpty property="customsModel">,CUSTOMS_MODEL=#customsModel#</isNotEmpty>
+        <isNotEmpty property="merchantId">,MERCHANT_ID=#merchantId#</isNotEmpty>
+        <isNotEmpty property="parentPaymentNo">,PARENT_PAYMENT_NO=#parentPaymentNo#</isNotEmpty>
         <isNotEmpty property="storeId">,STORE_ID=#storeId#</isNotEmpty>
+        <isNotEmpty property="paymentNo">,PAYMENT_NO=#paymentNo#</isNotEmpty>
+        <isNotEmpty property="orderId">,ORDER_ID=#orderId#</isNotEmpty>
         <isNotEmpty property="customsId">,CUSTOMS_ID=#customsId#</isNotEmpty>
-        <isNotEmpty property="fenFaRemark">,FEN_FA_REMARK=#fenFaRemark#</isNotEmpty>
         WHERE id=#id:BIGINT# and   <![CDATA[  unix_timestamp(MODIFIED)  < unix_timestamp(#modified#)]]>
     </update><!--删除-->
-    <delete id="Delete"
-            parameterClass="OrderTraceInfoMysqlBean"> DELETE FROM order_trace_info_mysql_bean WHERE id=#id:BIGINT#</delete>
+    <delete id="Delete" parameterClass="OrderTraceInfoMysqlBean">DELETE FROM order_trace_info_mysql_bean WHERE
+        id=#id:BIGINT#
+    </delete>
 </sqlMap>
